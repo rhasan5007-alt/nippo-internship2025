@@ -1,6 +1,16 @@
 import { FaCheckCircle } from "react-icons/fa";
 import { TodoData, TodoStatus } from "@/app/_types/TodoTypes";
 
+
+const createNewTodo = (title: string, description: string): TodoData => {
+  return {
+    id: Math.random(), 
+    title,
+    description,
+    status: TodoStatus.Backlog,  
+  };
+};
+
 type TodoItemProps = {
   id: number;
   todo: TodoData;
