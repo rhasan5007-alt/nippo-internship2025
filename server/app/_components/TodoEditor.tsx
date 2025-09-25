@@ -55,15 +55,20 @@ const TodoEditor = ({ editTargetTodo, onSubmit }): JSX.Element => {
           />
         </div>
 
-        <div className="m-2">
-          <button
-            type="submit"
-            className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
-            onClick={() => onSubmit(todo)}
-          >
-            保存
-          </button>
-        </div>
+       <div className="m-2">
+         <button
+           type="button" 
+           className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+           onClick={() => {
+           if (window.confirm("本当にToDoを追加しますか？")) {
+           onSubmit(todo);
+         }
+      }}
+      >
+        保存
+        </button>
+       </div>
+
       </form>
     </div>
   );
