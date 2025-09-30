@@ -40,19 +40,27 @@ const TodoForm = ({ children }: { children: TodoData[] }): JSX.Element => {
     setEditTargetTodo(todoList[idx]);
   };
 
+  const onStatusChangeHandler = (todoId: number, newStatus: TodoStatus) => {
+    const idx = todoList.findIndex((item) => item.id === todoId);
+    todoList[idx].status = newStatus;
+    setTodoList([...todoList]);
+  }
+
   return (
-    <>
-      {todoList.map((item, index) => (
-        <TodoItem
-          key={item.id}
-          todo={item}
-          onEditBeginingHandler={onTodoEditBegining}
-          isEditing={index === editingTodoIndex} 
-        />
-      ))}
-      <TodoEditor editTargetTodo={editTargetTodo} onSubmit={onTodoSubmitted} />
-    </>
-  );
+  <>
+    {todoList && todoList.map((item, index) => (
+      <TodoItem
+        key={item.id}
+        todo={item}
+        onStatusChange={onStatusChangeHandler}
+        onEditBeginingHandler={onTodoEditBegining}
+        isEditing={index === editingTodoIndex}
+      />
+    ))}
+    <TodoEditor editTargetTodo={editTargetTodo} onSubmit={onTodoSubmitted} />
+  </>
+);
+
 };
 
 export default TodoForm;
